@@ -69,5 +69,18 @@ else
 	echo	$logtype		$timestamp		$type		$filesize >> $bookeeper
 fi
 
+#CRON job script
+
+FILE='/etc/cron.d/automation'
+if test -f "$FILE"
+then
+	echo "Cron job exists."
+else
+	sudo touch /etc/cron.d/automation
+#CRON schedule to run everyday at 12:30 AM
+	sudo echo "30 0 * * * /root/Automation_Project/automation.sh" > /etc/cron.d/automation
+	sudo chmod 600 /etc/cron.d/automation
+fi
+
 
 
